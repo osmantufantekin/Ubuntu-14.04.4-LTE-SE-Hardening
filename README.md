@@ -38,4 +38,12 @@ ________________________________________________________________________________
       /etc/int/autofs.conf dosyası içinde ilk satır aşağıdaki gibi commentlenir.
    
 > \# start on runlevel [2345]
+
+###2. Boot Güvenlik Sıkılaştırmaları
+   2.1 bootloader üzerinde User/Group'ların set edilmesi
+   
+      Root olmayan kullanıcıların dizinler üzerinde değişiklik yapmaması için gerekli sıkılaştırmadır.
+      Aşağıdaki bash çalıştırılarak işlem gerçekleştirilir.
+
+> \# chown root:root /boot/grub/grub.cfg
    
