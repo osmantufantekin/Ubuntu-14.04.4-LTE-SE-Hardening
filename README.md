@@ -3,7 +3,7 @@
 ####*Bu sıkılaştırma klavuzunda Ubuntu 14.04 Server Edition'ı sıkılaştırmak için gerekli adımlar gösterilmektedir.*
 ___________________________________________________________________________________________________________________
 
-###1. Kurulum sırasında yapılacak sıkılaştırmalar
+###1. Dosya Sistemi Sıkılaştırmaları
    1.1. /tmp için ayrı bir partition oluşturma
    
       /tmp bütün kullanıcıların birlikte kullandığı ortak bir dizin olduğu için bu partition'ı ayrı tutmak
@@ -17,5 +17,20 @@ ________________________________________________________________________________
    1.3. /var/log için ayrı bir partition oluşturma
    
       /var/log dizini sistem servislerinin loglarının tutulduğu dizindir. Tutulan loglar çok hızlı şekilde
-      büyümektedir. Kullanılan kaynağın buna göre ayarlanması için ayrılması büyük önem arz etmektedir.
-      Servislerin bütün kayıtları loglara düşmektedir. Gerektiğinde kontrol edilebiliyor olması gerekmektedir.
+      büyümektedir. Kullanılan kaynağın buna göre ayrılması büyük önem arz etmektedir. Servislerin bütün
+      kayıtları loglara düşmektedir. Gerektiğinde kontrol edilebiliyor olması gerekmektedir.
+
+   1.4 /home için ayrı bir partition oluşturma
+   
+      Yerel kullanıcılar için disk sağlama alanı sağlayan bu dizin OS'in servislerinden bağımsız tutulması
+      gerekmektedir.
+   
+   1.5 Herkese açık dizinlerde Sticky Bit'in set edilmesi
+   
+      Kullanıcıların kendisine ait olmayan dizinler altındaki verilerin silinmesini ve isimlerinde değişiklik
+      yapmasını engellenmesi gerekmektedir.
+      
+   def foo():
+       if not bar:
+           return True
+   
