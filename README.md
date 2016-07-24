@@ -61,6 +61,6 @@ ________________________________________________________________________________
       engellenmesi gerekmektedir. Aşağıdaki bash çalıştırılarak gerçekleştirilir.
 
 >  \# grub-mkpasswd-pbkdf2
-      Enter password: <password>
-      Reenter password: <password>
-      Your PBKDF2 is <encrypted-password>
+>     Enter password: <password>
+>     Reenter password: <password>
+>     Your PBKDF2 is <encrypted-password>
