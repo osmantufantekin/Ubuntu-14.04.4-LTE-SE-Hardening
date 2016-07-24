@@ -76,3 +76,7 @@ ________________________________________________________________________________
 > \# /usr/sbin/prelink -ua
 
 > \# apt-get purge prelink
+
+###4. İşletim Sistemi Servisleri Sıkılaştırmaları
+   #### 4.1 Hazır gelen servislerin kapatılması
+      4.1.1
