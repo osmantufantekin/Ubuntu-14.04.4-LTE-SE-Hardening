@@ -30,7 +30,6 @@ ________________________________________________________________________________
       Kullanıcıların kendisine ait olmayan dizinler altındaki verilerin silinmesini ve isimlerinde değişiklik
       yapmasını engellenmesi gerekmektedir.
       
-   def foo():
-       if not bar:
-           return True
+      ~~# df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d
+      -perm -0002 2>/dev/null | xargs chmod a+t~~
    
