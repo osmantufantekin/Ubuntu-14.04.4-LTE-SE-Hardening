@@ -98,9 +98,38 @@ ________________________________________________________________________________
 
    4.1.3. rsh client'ın devredışı bırakılması
 
-      rsh server'ın devredışı kalmasından sonra client da devredışı bırakılır. aşağıdaki bash kullanılarak
+      rsh server'ın devredışı kalmasından sonra client da devredışı bırakılır. Aşağıdaki bash kullanılarak
       devredışı bırakılır.
 
 > \# apt-get purge rsh-client rsh-reload-client
 
-   4.1.4.
+   4.1.4. Talk server'ın devredışı bırakılması
+   
+      Terminal üzerinden mesaj alınıp gönderilmesine yarayan servistir. /etc/inetd.conf içerisinde başında shell,
+      login ve exec içeren satırlar comment yapılarak devredışı bırakılır.
+
+> \# talk dgram udp wait nobody.tty /usr/sbin/in.talkd in.talkd 
+> \# ntalk dgram udp wait nobody.tty /usr/sbin/in.ntalkd in.ntalkd
+
+   4.1.5. Talk client'ın devredışı bırakılması
+
+      talk server'ın devredışı kalmasından sonra client da devredışı bırakılır. Aşağıdaki bash kullanılarak
+      devredışı bırakılır.
+
+> \# apt-get purge talk
+
+   4.1.5. Telnet server'ın devredışı bırakılması
+   
+      Telnet protokolü kullanılarak mesaj alıp vermeye yarayan servistir. /etc/inetd.conf
+      telnet ile başlayan satır silinerek devredışı bırakılır.
+
+> \# telnet stream tcp nowait telnetd /usr/sbin/tcpd /usr/sbin/in.telnetd
+
+   4.1.5. tftp-server'ın devredışı bırakılması
+
+      Dosya transfer protokolü olan tftp'nin devredışı bırakılması gerekmektedir. /etc/inet.conf içeresindeki
+      tftp geçen bütün satırlar commentlenerek gerçekleştirilir.
+
+> \# tftp stream tcp nowait root internal
+
+   4.1.6.
