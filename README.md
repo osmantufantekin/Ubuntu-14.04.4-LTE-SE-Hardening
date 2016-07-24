@@ -4,5 +4,5 @@
 ___________________________________________________________________________________________________________________
 
 ###1. Kurulum sırasında yapılacak sıkılaştırmalar
-    *1.1.* /tmp için farklı bir partition oluşturma
+    _1.1._ /tmp için farklı bir partition oluşturma
         
