@@ -1,3 +1,5 @@
-Ubuntu-14.04.4-LTE-SE-Hardening
+UBUNTU 14.04 Server Sıkılaştırma kılavuzu
+===============================
 
-Ubuntu 14.04.4 SE'yi güvenli yapmak için gereken sıkılaştırma kılavuzu
+SIKILAŞTIRMA 
+===============================
