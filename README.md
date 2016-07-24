@@ -4,5 +4,7 @@
 ___________________________________________________________________________________________________________________
 
 ###1. Kurulum sırasında yapılacak sıkılaştırmalar
-    _1.1./_ /tmp için farklı bir partition oluşturma
-        
+    1.1. /tmp için ayrı bir partition oluşturma
+        /tmp bütün kullanıcıların birlikte kullandığı ortak bir dizin olduğu için bu partition'ı ayrı tutmak gelebilecek
+        saldırılarda diğer harddisk bölümlerine geçiş engellenmiş olur.
+    2.1
