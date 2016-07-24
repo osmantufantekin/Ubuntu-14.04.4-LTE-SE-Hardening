@@ -87,4 +87,19 @@ ________________________________________________________________________________
       client-server içerikli bir servistir. Aşağıdaki bash kullanılarak kaldırılır.
 > \# apt-get purge nis
 
-   4.1.2.
+   4.1.2. rsh server'ın devredışı bırakılması.
+
+      clear-text üzerinden haberleşen bir service'tir. /etc/inetd.conf içerisinde başında shell, login ve
+      exec içeren satırlar comment yapılarak devredışı bırakılır.
+   
+>\#shell stream tcp nowait root /usr/sbin/tcpd /usr/sbin/in.rshd 
+>\#login stream tcp nowait root /usr/sbin/tcpd /usr/sbin/in.rlogind 
+>\#exec stream tcp nowait root /usr/sbin/tcpd /usr/sbin/in.rexecd
+
+   4.1.3. rsh client'ın devredışı bırakılması
+      rsh server'ın devredışı kalmasından sonra client da devredışı bırakılır. aşağıdaki bash kullanılarak
+      devredışı bırakılır.
+
+> \# apt-get purge rsh-client rsh-reload-client
+
+   4.1.4.
