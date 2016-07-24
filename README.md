@@ -82,9 +82,9 @@ ________________________________________________________________________________
    >Servisler eğer OS üzerinde yapılan çalışmalar için önemli değilse kaldırılmalıdır. Bu kısımda dikkat
    >edilmesi gereken en önemli durum buna dikkat etmektir.
 
-      4.1.1 NIS'in devredışı bırakılması
+   4.1.1 NIS'in devredışı bırakılması
    
       client-server içerikli bir servistir. Aşağıdaki bash kullanılarak kaldırılır.
 > \# apt-get purge nis
 
-      4.1.2.
+   4.1.2.
