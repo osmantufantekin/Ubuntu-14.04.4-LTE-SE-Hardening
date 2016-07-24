@@ -8,4 +8,10 @@ ________________________________________________________________________________
    
       /tmp bütün kullanıcıların birlikte kullandığı ortak bir dizin olduğu için bu partition'ı ayrı tutmak
       yapılan saldırılarda diğer harddisk bölümlerine geçişi engellenmiş olur.
-   1.2
+   1.2. /var için ayrı bir partition oluşturma
+   
+      /var dizini OS üzerinde çalışan servislerin çalıştığı ve dinamik data akışının gerçekleştiği dizindir.
+      İçinde bulunduğu partition içerisinden müdahelede bulunulma riski bulunmaktadır. Ayrı bir partition 
+      bu açıdan daha güvenlidir.
+
+   1.3.
