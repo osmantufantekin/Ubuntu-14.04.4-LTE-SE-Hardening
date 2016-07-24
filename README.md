@@ -80,7 +80,7 @@ ________________________________________________________________________________
 ###4. İşletim Sistemi Servisleri Sıkılaştırmaları
 ####4.1 Hazır gelen servislerin kapatılması
    >Servisler eğer OS üzerinde yapılan çalışmalar için önemli değilse kaldırılmalıdır. Bu kısımda dikkat
-   >edilmesi gereken en önemli durum buna dikkat etmektir.
+   >edilmesi gereken en önemli durum buna dikkat etmektir.    
       4.1.1 NIS'in devredışı bırakılması
    
       client-server içerikli bir servistir. Aşağıdaki bash kullanılarak kaldırılır.
