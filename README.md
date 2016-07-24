@@ -58,9 +58,21 @@ ________________________________________________________________________________
    2.3 Boot Loader parolası ayarlanması
    
       Root parametrelerinin değiştirilmek istenilmesi durumunda paraloyla yetkisiz olan kullanıcıların
-      engellenmesi gerekmektedir. Aşağıdaki bash çalıştırılarak gerçekleştirilir.
+      engellenmesi gerekmektedir. Aşağıdaki bash çalıştırılarak gerçekleştirilir. 
 
 >  \# grub-mkpasswd-pbkdf2   
 >     Enter password: <password>   
 >     Reenter password: <password>    
 >     Your PBKDF2 is <encrypted-password>   
+
+###3. Ek Process Sıkılaştırmaları
+
+   3.1 Prelink'i devredışı bırakma
+   
+      Prelink daha hızlı başlangıçlar için binary'leri değiştirir. Binary'lere erişimin sağlanması engellenmesi
+      gerekmektedir. Binary'leri normale döndürmek için aşağıdaki ilk bash çalıştırılır. Prelinki silmek için
+      ikinci bash çalıştırılmalıdır.
+   
+> \# /usr/sbin/prelink -ua
+
+> \# apt-get purge prelink
