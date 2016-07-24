@@ -31,4 +31,11 @@ ________________________________________________________________________________
       yapmasını engellenmesi gerekmektedir.
       
 > #df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d-perm -0002 2>/dev/null | xargs chmod a+t
+
+   1.6 Otomatik Mountingin kullanım dışı bırakma
+   
+      USB, CD gibi otomatik mountlanan cihazların engellenmesi gerekmektedir.
+      /etc/int/autofs.conf dizininin ilk satırı commentlenir.
+   
+> #start on runlevel [2345]
    
