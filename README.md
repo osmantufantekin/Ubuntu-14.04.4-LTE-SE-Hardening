@@ -47,3 +47,20 @@ ________________________________________________________________________________
 
 > \# chown root:root /boot/grub/grub.cfg
    
+   2.2 bootloader configi üzerinde izinlerin ayarlanması
+   
+      Root parametrelerin değiştirilmesini ve görülmesini engelleme işlemidir. Root parametrelerinin
+      okunması sistemdeki zayıflıkların görülmesine sebep olabilir. Aşağıdaki bash çalıştırılarak işlem
+      gerçekleştirilir.
+
+> \# chmod og-rwx /boot/grub/grub.cfg
+
+   2.3 Boot Loader parolası ayarlanması
+   
+      Root parametrelerinin değiştirilmek istenilmesi durumunda paraloyla yetkisiz olan kullanıcıların
+      engellenmesi gerekmektedir. Aşağıdaki bash çalıştırılarak gerçekleştirilir.
+
+>  \# grub-mkpasswd-pbkdf2
+      Enter password: <password>
+      Reenter password: <password>
+      Your PBKDF2 is <encrypted-password>
