@@ -173,7 +173,79 @@ ________________________________________________________________________________
    >Servisler eğer OS üzerinde yapılan çalışmalar için önemli değilse kaldırılmalıdır. Bu kısımda dikkat
    >edilmesi gereken en önemli durum buna dikkat etmektir.
    
-#### 5.1 X Window Sisteminin devredişi bırakılması
+#### 5.1 FTP Serverın devredışı bırakılması
 
-      
+      File Transfer Protocol dosya transferinde kullanılan bir serverdır. /etc/init/vsfrpd.conf içerisindeki
+      ilk satır commentlenerek devredışı bırakılır.
 
+> \#start on runlevel [2345] or net-device-up IFACE!=lo
+
+#### 5.2 HTTP Serverın devredışı bırakılması
+
+      HTTP Web Server olarak kullanılan bir protokoldür. Atak genişliğini azaltmak için kapatılması gerekmektedir.
+      /etc/rc*.d içerisindeki ilk satır commentlenerek devredışı bırakılır.
+
+> \# rm /etc/rc*.d/S*apache2
+
+#### 5.3 IMAP ve POP server'larının devredışı bırakılması
+
+      IMAP ve POP Mail Serverlar olarak kullanılır. /etc/init/devecot.conf içeresindeki ilk satır commentlenerek
+      devredışı bırakılır.
+
+> \#start on runlevel [2345]
+
+#### 5.4 rsync servisinin devredışı bırakılması
+
+      Networkler ile sistem arasındaki dosyaların senkronize edilmesini sağlayan servistir. Clear-text bir protokol
+      olduğu için tehlike arz etmektedir. /etc/default/rsync içerisindeki RSYNC_ENABLE satırını 'false' yaparak
+      devredışı bırakılır.
+
+> RSYNC_ENABLE=false
+
+### 6. Network ve Firewall Ayarları
+
+#### 6.1 IP Forwarding'i devredışı bırakma
+
+      Server router olarak kullanılmıyorsa IP Forwarding'in devredışı bırakılması gerekmektedir. /etc/sysctl.conf
+      içerisindeki net.ipb4.ip_forward parameter değerinin = olması gerekmektedir.
+
+> net.ipv4.ip_forward=0
+
+#### 6.2 Şüpheli gelen paketleri loglama
+
+      Gelen paketlerde şüpheli olanların loglanmasını sağlamak gelen atakların takibini kolaylaştıracaktır.
+      /etc/sysctl.conf içerisindeki net.ipv4.conf.all.log_martians ve net.ipv4.conf.default.log_martians değerleri
+      1 yapılarak bu sağlanır.
+
+> net.ipv4.conf.all.log_martians=1
+> net.ipv4.conf.default.log_martians=1
+
+#### 6.3 Broadcast isteklerinin ignore edilmesi
+
+      ICMP broadcast mesajlarıyla yapılabilecek bir saldırıyı engellemek için ignore edilmesi gerekmektedir.
+      /etc/sysctl.conf içerisindeki net.ipv4.icmp_echo_ignore_broadcasts değeri 1 yapılarak ignore edilir.
+
+> net.ipv4.icmp_echo_ignore_broadcasts=1
+
+#### 6.4 TCP SYN Cookies'in etkinleştirilmesi
+
+      DOS saldırılarında kullanılan SYN Flood tekniği için kullanılması gereken bir sıkılaştırmadır.
+      DOS saldırsı altında da gerekli yerlere mesajların gönderilmesi için TCP SYN Cookies'in etkinleştirilmesi
+      gerekmektedir. /etc/sysctl.conf içerisinde net.ipv4.tcp_syncookies parametresi 1 yapılmalıdır.
+
+>net.ipv4.tcp_syncookies=1
+
+#### 6.5 Yaygın olamyan Network Protokollerinin devredışı bırakılması
+
+      DCCP, SCTP, RDS, TIPC gibi protokollerin devredışı bırakılması bunlardan kaynaklanacak açıkların
+      kullanılmasını engellemektedir.
+   
+#### 6.6 Firewall'un aktif olduğundan emin olunması
+
+      Firewallar her yerde olduğu gibi Ubuntu üzerinde de gelen bağlantıların limitlenerek savunma sistemini
+      güçlendirmeyi sağlamaktadır ve her sistemde olduğu gibi burda da Firewall'un açık olması en büyük
+      sıkılaştırmaların başında gelmektedir. Aşağıdaki bash kullanılarak aktif değilse aktif hale getirilir.
+
+> \# ufw enable
+
+### 7. 
