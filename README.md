@@ -132,4 +132,13 @@ ________________________________________________________________________________
 
 > \# tftp stream tcp nowait root internal
 
-   4.1.6.
+#### 4.2 chargen'in devredışı bırakılması
+
+      chargen, network debug ve test için kullanılan bir servistir. Bu servisin kapatılması uzaktan gelen
+      saldırıları azaltır. /etc/inetd.conf içeresindeki chargen içeren satırlar silinerek devredışı bırakılır.
+
+> \# chargen stream tcp nowait root internal
+
+#### 4.3 daytime'ın devredışı bırakılması
+
+      
