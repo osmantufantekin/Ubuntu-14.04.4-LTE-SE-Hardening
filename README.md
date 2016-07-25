@@ -394,6 +394,14 @@ ________________________________________________________________________________
 
 > PermitRootLogin no
 
-### Kullanıcı hesapları sıkılaştırmaları
+### 9. Kullanıcı hesapları sıkılaştırmaları
 
-####
+####9.1 Parola sıkılaştırmaları
+
+##### 9.1.1 Parolanın yaşam süresinin ayarlanması
+
+      /etc/login.defs içeresindeki PASS_MAX_DAYS parametresi aşağıdaki gibi değiştirilerek uygulanır.
+
+> PASS_MAX_DAYS 90
+
+##### 9.2 
