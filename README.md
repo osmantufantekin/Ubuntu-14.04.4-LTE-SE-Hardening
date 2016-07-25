@@ -78,9 +78,10 @@ ________________________________________________________________________________
 > \# apt-get purge prelink
 
 ###4. İşletim Sistemi Servisleri Sıkılaştırmaları
-####4.1 Hazır gelen servislerin kapatılması
    >Servisler eğer OS üzerinde yapılan çalışmalar için önemli değilse kaldırılmalıdır. Bu kısımda dikkat
    >edilmesi gereken en önemli durum buna dikkat etmektir.
+
+####4.1 Hazır gelen servislerin kapatılması
 
    4.1.1 NIS'in devredışı bırakılması
    
@@ -135,10 +136,44 @@ ________________________________________________________________________________
 #### 4.2 chargen'in devredışı bırakılması
 
       chargen, network debug ve test için kullanılan bir servistir. Bu servisin kapatılması uzaktan gelen
-      saldırıları azaltır. /etc/inetd.conf içeresindeki chargen içeren satırlar silinerek devredışı bırakılır.
+      saldırıları azaltır. /etc/inetd.conf içeresindeki chargen içeren satırlar commentlenerek devredışı 
+      bırakılır.
 
 > \# chargen stream tcp nowait root internal
 
 #### 4.3 daytime'ın devredışı bırakılması
 
+      Serverların tarih ve saat bilgilerini gönderen bir network servisidir. /etc/inetd.conf içerisindeki
+      daytime içeren satırlar commentlenerek devredışı bırakılır.
+
+>\# daytime stream tcp nowait root internal
+
+#### 4.4 echo'nun devredışı bırakılması
+
+      Debug ve test için kullanılan bir network servisidir. /etc/inetd.conf içerisindeki echo içeren
+      satırlar commentlenerek devredışı bırakılır.
+   
+> \# echo stream tcp nowait root internal
+
+#### 4.5 discard'ın devredışı bırakılması
+
+      Aldığı bütün mesajları silen bir network servisidir. /etc/inetd.conf içerisindeki discard içeren
+      bütün satırlan commentlenerek devredışı bırakılır.
+
+> \# discard stream tcp nowait root internal
+
+#### 4.6 time'ın devredışı bırakılması
+
+      Serverların tarih ve saatini 32 bit integer şeklinde dönen bir network servisidir. /etc/inetd.conf
+      içerisindeki time içeren satırlar commentlenerek devredışı bırakılır.
+
+> \# time stream tcp nowait root internal
+
+### 5. Özel amaçlı servislerin sıkılaştırılması
+   >Servisler eğer OS üzerinde yapılan çalışmalar için önemli değilse kaldırılmalıdır. Bu kısımda dikkat
+   >edilmesi gereken en önemli durum buna dikkat etmektir.
+   
+#### 5.1 X Window Sisteminin devredişi bırakılması
+
       
+
