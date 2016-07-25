@@ -272,20 +272,20 @@ ________________________________________________________________________________
       bir metotdur. Bunların kaydedilmesi kayıtları daha verimli kullanılmasını sağlamaktadır. 64 bit için aşağıdaki
       satırlar /etc/audit/audit.rules 'a eklenir.
 
-> -a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change
-> -a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change
-> -a always,exit -F arch=b64 -S clock_settime -k time-change
-> -a always,exit -F arch=b32 -S clock_settime -k time-change
-> -w /etc/localtime -p wa -k time-change
-> \# Execute the following command to restart auditd
-> \# pkill -P 1-HUP auditd
+> -a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change   
+> -a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change   
+> -a always,exit -F arch=b64 -S clock_settime -k time-change   
+> -a always,exit -F arch=b32 -S clock_settime -k time-change   
+> -w /etc/localtime -p wa -k time-change   
+> \# Execute the following command to restart auditd   
+> \# pkill -P 1-HUP auditd   
 
       32 bit için /etc/audit/audit.rules 'a aşağıdaki satırlar eklenir.
 
-> -a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change
-> -a always,exit -F arch=b32 -S clock_settime -k time-change
-> -w /etc/localtime -p wa -k time-change
-> \# Execute the following command to restart auditd
-> \# pkill -P 1-HUP auditd
+> -a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change   
+> -a always,exit -F arch=b32 -S clock_settime -k time-change   
+> -w /etc/localtime -p wa -k time-change   
+> \# Execute the following command to restart auditd   
+> \# pkill -P 1-HUP auditd   
 
 #### 7.4 
