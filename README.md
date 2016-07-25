@@ -375,3 +375,25 @@ ________________________________________________________________________________
       /etc/pam.d/common-password içeresindeki pam_unix.so remember parametresi aşağıdaki gibi set edilir.
 
 > password sufficient pam_unix.so remember=5
+
+#### 8.3 SSH Ayarlamaları
+
+      SSH paketlerin şifrelenerek gönderilmesini sağlayan bir protokoldür.
+
+##### 8.3.1 SSH versiyonunun 2 yapılması
+
+      /etc/ssh/sshd_config içerisindeki Protocol parametresi aşağaıdaki gibi set edilir.
+
+> Protocol 2
+
+##### 8.3.2 SSH'a root olarak erişimin kapatılması
+
+      Root olarak erişimin engellenmesi sudo ve su ile yapılabilecek değişiklikleri kısıtlar ve audit
+      için daha düzgün bir loglamaya olanak sağlar. /etc/ssh/sshd_config içerisinde aşağıdaki değişilik
+      yapılarak uygulanır.
+
+> PermitRootLogin no
+
+### Kullanıcı hesapları sıkılaştırmaları
+
+####
