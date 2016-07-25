@@ -288,4 +288,39 @@ ________________________________________________________________________________
 > \# Execute the following command to restart auditd   
 > \# pkill -P 1-HUP auditd   
 
-#### 7.4 
+#### 7.4 Oturum açma ve kapatma olaylarının kaydedilmesi
+
+      Özellikle Brute Force saldırılarının tespit edilmesi için uygulanması gereken sıkılaştırmadır. 
+      /etc/audit/audit.rules dosyasına aşağıdaki satırlar eklenerek uygulanır.
+
+> -w /var/log/faillog -p wa -k logins   
+> -w /var/log/lastlog -p wa -k logins   
+> -w /var/log/tallylog -p wa -k logins   
+> \# Execute the following command to restart auditd   
+> \# pkill -HUP -P 1 auditd   
+
+#### 7.5 Dosyalara olan başarısız ve yetkisiz açma girişimlerinin kaydının tutulması
+
+      İzinsiz olunan dosyaları açmaya çalışan kullanılar ya da dışarıdan yapılan saldırıların tespiti
+      için bu kayıtların da tutulması tespit için kolaylık sağlamaktadır.
+      64 bit için /etc/audit/audit.rules dosyasına aaşağıdaki satırlar eklenir.
+
+> -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate \   
+> -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access   
+> -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \   
+> -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access   
+> -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate \   
+> -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access   
+> -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \   
+> -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access   
+> \# Execute the following command to restart auditd   
+> \# pkill -HUP -P 1 auditd
+
+      32 bit için /etc/audit/audit.rules dosyasına aşağıdaki satırlar eklenir.
+
+> -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \
+> -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access
+> -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \
+> -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access
+> \# Execute the following command to restart auditd
+> \# pkill -HUP -P 1 auditd
