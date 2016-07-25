@@ -248,4 +248,44 @@ ________________________________________________________________________________
 
 > \# ufw enable
 
-### 7. 
+### 7. Logging ve Auditing
+
+      log ve audit sistem üzerinde gerçekleştirilen değişiklikler, kullanıcılar ile ilgili bilgiler ve hareketleri
+      tutan bir yapıdır. Saldırı tespitinde kullanılan en önemli unsurlardan biridir.
+
+#### 7.1 Bütün Auditing bilgilerinin tutulması
+
+      auditd default olarak maksimum 4 tane log tutmaktadır ve bunun genişletilmesi gerekmektedir.
+      /etc/audit/auditd.conf içerisine aşağıdaki satır eklenerek gerçekleştirilir.
+
+>  max_log_file_action = keep_logs
+
+#### 7.2 auditd servisinin yüklenmesi ve kullanılabilir hale getirilmesi
+
+      Sistem olaylarını kaydının tutulması için gerekli sıkılaştırmadır. Aşağıdaki bash ile gerçekleştirilir.
+
+> \# apt-get install auditd
+
+#### 7.3 Tarih ve Saati değişikliği yapan olayların kaydedilmesi
+
+      Sistemde yapılan tarih ve saat değişiklikleri yapılan bir saldırının tespitini zorlaştırmak için kullanılan
+      bir metotdur. Bunların kaydedilmesi kayıtları daha verimli kullanılmasını sağlamaktadır. 64 bit için aşağıdaki
+      satırlar /etc/audit/audit.rules 'a eklenir.
+
+> -a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change
+> -a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change
+> -a always,exit -F arch=b64 -S clock_settime -k time-change
+> -a always,exit -F arch=b32 -S clock_settime -k time-change
+> -w /etc/localtime -p wa -k time-change
+> \# Execute the following command to restart auditd
+> \# pkill -P 1-HUP auditd
+
+      32 bit için /etc/audit/audit.rules 'a aşağıdaki satırlar eklenir.
+
+> -a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change
+> -a always,exit -F arch=b32 -S clock_settime -k time-change
+> -w /etc/localtime -p wa -k time-change
+> \# Execute the following command to restart auditd
+> \# pkill -P 1-HUP auditd
+
+#### 7.4 
