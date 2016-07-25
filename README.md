@@ -318,9 +318,60 @@ ________________________________________________________________________________
 
       32 bit için /etc/audit/audit.rules dosyasına aşağıdaki satırlar eklenir.
 
-> -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \
-> -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access
-> -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \
-> -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access
-> \# Execute the following command to restart auditd
-> \# pkill -HUP -P 1 auditd
+> -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \   
+> -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access   
+> -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \   
+> -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access   
+> \# Execute the following command to restart auditd   
+> \# pkill -HUP -P 1 auditd   
+
+#### 7.6 Sistem Adminliği değişikliklerinin kaydedilmesi(sudolog)
+
+      Sistem admini tarafından yapılan değişikliklerin kaydedilmesine olanak tanır. 
+      /etc/audit/audit.rules dosyasına aşağıdaki satırlar eklenerek gerçekleştirilir.
+
+> -w /var/log/sudo.log -p wa -k actions   
+> \# Execute the following command to restart auditd   
+> \# pkill -HUP -P 1 auditd   
+
+#### 7.7 Audit Konfigürasyonlarının immutable yapılması
+
+      Audit sisteminin immutable yapılması yetkili olmayan kullanıcılar değişiklik yapamaması
+      için önemli bir sıkılaştırmadır. /etc/audit/audit.rules dosyasına aşağıdaki satır eklenerek
+      uygulanır.
+
+> -e 2
+
+#### 7.8 AIDE kurulumu
+
+      Kritik dosyalardaki değişiklikleri görülmesini sağlayan bir araçtır. Aşağıdaki bash ile etkinleştirilir.
+
+> \# apt-get install aide   
+> \# aideinit   
+> \# cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db   
+
+### 8. System Access, Authentication and Authorization
+
+#### 8.1 cron'un aktifleştirilmesi
+
+      batch işlemlerini uygulayan araçtır. /etc/init/cron.conf dosyasındaki ilk satır aşağıdaki gibi yapılmalıdır.
+
+> start on runlevel [2345]
+
+#### 8.2 PAM'ın aktifleştirilmesi
+
+      PAM (Pluggable Authentication Modules) Unix sistemlerinde authentication modüllerinin yazıldığı araçtır.
+
+##### 8.2.1 Şifrelemenin nasıl yapılacağına karar verilmesi
+
+      PAM ile şifrelemenin kısıtları ve kaç denemeye kadar müsade edileceğinin yapılması gerekmektedir.
+      /etc/pam.d/common-password içerisindeki pam_cracklib.so parametresi aşağıdaki gibi ayarlanmalıdır.
+
+> password required pam_cracklib.so retry=3 minlen=14 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1
+
+##### 8.2.2 Şifrenin tekrar kullanımının kısıtlanması
+
+      Aynı şifrenin tekrar kullanılmasını engellemek önemli sıkılaştırmalardan bir tanesidir.
+      /etc/pam.d/common-password içeresindeki pam_unix.so remember parametresi aşağıdaki gibi set edilir.
+
+> password sufficient pam_unix.so remember=5
