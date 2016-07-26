@@ -404,4 +404,19 @@ ________________________________________________________________________________
 
 > PASS_MAX_DAYS 90
 
-##### 9.2 
+### 10. Sistem Dosyalarına erişim sıkılaştırmaları
+
+#### 10.1 /etc/passwd'a erişimin ayarlanması
+
+      Parolaların erişimin engellenmesi dışarıdan gelebilecek tehditleri azaltmaktadır. Aşağıdaki bash
+      uygulanarak erişim izni ayarlanır.
+
+> /bin/chmod 644 /etc/passwd
+
+#### 10.2 /etc/shado'a erişimin ayarlanması
+
+      Kullanıcılarla ilgili verilerin tutulduğu dosyaya erişimin engellenmesi öenmli bir sıkılaştırmadır.
+      Aşağıdaki bash çalıştırılarak erişim izni ayarlanır.
+
+> /bin/chmod o-rwx,g-rw /etc/shadow
+
