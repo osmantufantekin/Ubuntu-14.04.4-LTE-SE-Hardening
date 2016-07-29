@@ -14,25 +14,20 @@ ________________________________________________________________________________
       İçinde bulunduğu partition içerisinden müdahelede bulunulma riski bulunmaktadır. Ayrı bir partition 
       bu açıdan daha güvenlidir.
 
-   1.3. /var/log için ayrı bir partition oluşturma
-   
-      /var/log dizini sistem servislerinin loglarının tutulduğu dizindir. Tutulan loglar çok hızlı şekilde
-      büyümektedir. Kullanılan kaynağın buna göre ayrılması büyük önem arz etmektedir. Servislerin bütün
-      kayıtları loglara düşmektedir. Gerektiğinde kontrol edilebiliyor olması gerekmektedir.
 
-   1.4 /home için ayrı bir partition oluşturma
+   1.3 /home için ayrı bir partition oluşturma
    
       Yerel kullanıcılar için disk sağlama alanı sağlayan bu dizin OS'in servislerinden bağımsız tutulması
       gerekmektedir.
    
-   1.5 Herkese açık dizinlerde Sticky Bit'in set edilmesi
+   1.4 Herkese açık dizinlerde Sticky Bit'in set edilmesi
    
       Kullanıcıların kendisine ait olmayan dizinler altındaki verilerin silinmesini ve isimlerinde değişiklik
       yapmasını engellenmesi gerekmektedir.
       
 > \# df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d-perm -0002 2>/dev/null | xargs chmod a+t
 
-   1.6 Otomatik Mountingin kullanım dışı bırakma
+   1.5 Otomatik Mountingin kullanım dışı bırakma
    
       USB, CD gibi otomatik mountlanan cihazların engellenmesi gerekmektedir.
       /etc/int/autofs.conf dosyası içinde ilk satır aşağıdaki gibi commentlenir.
