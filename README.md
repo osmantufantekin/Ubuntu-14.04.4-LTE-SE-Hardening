@@ -114,7 +114,7 @@ ________________________________________________________________________________
 
 > \# apt-get purge talk
 
-   4.1.5. Telnet server'ın devredışı bırakılması
+   4.1.6. Telnet server'ın devredışı bırakılması
    
       Telnet protokolü kullanılarak mesaj alıp vermeye yarayan servistir. /etc/inetd.conf
       telnet ile başlayan satır silinerek devredışı bırakılır.
