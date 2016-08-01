@@ -38,14 +38,14 @@ ________________________________________________________________________________
    2.1 bootloader üzerinde User/Group'ların set edilmesi
    
       Root olmayan kullanıcıların dizinler üzerinde değişiklik yapmaması için gerekli sıkılaştırmadır.
-      Aşağıdaki bash çalıştırılarak işlem gerçekleştirilir.
+      Aşağıdaki komut çalıştırılarak işlem gerçekleştirilir.
 
 > \# chown root:root /boot/grub/grub.cfg
    
    2.2 bootloader configi üzerinde izinlerin ayarlanması
    
       Root parametrelerin değiştirilmesini ve görülmesini engelleme işlemidir. Root parametrelerinin
-      okunması sistemdeki zayıflıkların görülmesine sebep olabilir. Aşağıdaki bash çalıştırılarak işlem
+      okunması sistemdeki zayıflıkların görülmesine sebep olabilir. Aşağıdaki komut çalıştırılarak işlem
       gerçekleştirilir.
 
 > \# chmod og-rwx /boot/grub/grub.cfg
@@ -53,7 +53,7 @@ ________________________________________________________________________________
    2.3 Boot Loader parolası ayarlanması
    
       Root parametrelerinin değiştirilmek istenilmesi durumunda paraloyla yetkisiz olan kullanıcıların
-      engellenmesi gerekmektedir. Aşağıdaki bash çalıştırılarak gerçekleştirilir. 
+      engellenmesi gerekmektedir. Aşağıdaki komut çalıştırılarak gerçekleştirilir. 
 
 >  \# grub-mkpasswd-pbkdf2   
 >     Enter password: <password>   
@@ -66,7 +66,7 @@ ________________________________________________________________________________
    
       Prelink daha hızlı başlangıçlar için binary'leri değiştirir. Binary'lere erişimin sağlanması engellenmesi
       gerekmektedir. Binary'leri normale döndürmek için aşağıdaki ilk bash çalıştırılır. Prelinki silmek için
-      ikinci bash çalıştırılmalıdır.
+      ikinci komut çalıştırılmalıdır.
    
 > \# /usr/sbin/prelink -ua
 
@@ -80,7 +80,7 @@ ________________________________________________________________________________
 
    4.1.1 NIS'in devredışı bırakılması
    
-      client-server içerikli bir servistir. Aşağıdaki bash kullanılarak kaldırılır.
+      client-server içerikli bir servistir. Aşağıdaki komut kullanılarak kaldırılır.
 > \# apt-get purge nis
 
    4.1.2. rsh server'ın devredışı bırakılması
@@ -94,7 +94,7 @@ ________________________________________________________________________________
 
    4.1.3. rsh client'ın devredışı bırakılması
 
-      rsh server'ın devredışı kalmasından sonra client da devredışı bırakılır. Aşağıdaki bash kullanılarak
+      rsh server'ın devredışı kalmasından sonra client da devredışı bırakılır. Aşağıdaki komut kullanılarak
       devredışı bırakılır.
 
 > \# apt-get purge rsh-client rsh-reload-client
@@ -109,7 +109,7 @@ ________________________________________________________________________________
 
    4.1.5. Talk client'ın devredışı bırakılması
 
-      talk server'ın devredışı kalmasından sonra client da devredışı bırakılır. Aşağıdaki bash kullanılarak
+      talk server'ın devredışı kalmasından sonra client da devredışı bırakılır. Aşağıdaki komut kullanılarak
       devredışı bırakılır.
 
 > \# apt-get purge talk
@@ -121,7 +121,7 @@ ________________________________________________________________________________
 
 > \# telnet stream tcp nowait telnetd /usr/sbin/tcpd /usr/sbin/in.telnetd
 
-   4.1.5. tftp-server'ın devredışı bırakılması
+   4.1.7. tftp-server'ın devredışı bırakılması
 
       Dosya transfer protokolü olan tftp'nin devredışı bırakılması gerekmektedir. /etc/inet.conf içeresindeki
       tftp geçen bütün satırlar commentlenerek gerçekleştirilir.
@@ -239,7 +239,7 @@ ________________________________________________________________________________
 
       Firewallar her yerde olduğu gibi Ubuntu üzerinde de gelen bağlantıların limitlenerek savunma sistemini
       güçlendirmeyi sağlamaktadır ve her sistemde olduğu gibi burda da Firewall'un açık olması en büyük
-      sıkılaştırmaların başında gelmektedir. Aşağıdaki bash kullanılarak aktif değilse aktif hale getirilir.
+      sıkılaştırmaların başında gelmektedir. Aşağıdaki komut kullanılarak aktif değilse aktif hale getirilir.
 
 > \# ufw enable
 
@@ -257,7 +257,7 @@ ________________________________________________________________________________
 
 #### 7.2 auditd servisinin yüklenmesi ve kullanılabilir hale getirilmesi
 
-      Sistem olaylarını kaydının tutulması için gerekli sıkılaştırmadır. Aşağıdaki bash ile gerçekleştirilir.
+      Sistem olaylarını kaydının tutulması için gerekli sıkılaştırmadır. Aşağıdaki komut ile gerçekleştirilir.
 
 > \# apt-get install auditd
 
@@ -339,7 +339,7 @@ ________________________________________________________________________________
 
 #### 7.8 AIDE kurulumu
 
-      Kritik dosyalardaki değişiklikleri görülmesini sağlayan bir araçtır. Aşağıdaki bash ile etkinleştirilir.
+      Kritik dosyalardaki değişiklikleri görülmesini sağlayan bir araçtır. Aşağıdaki komut ile etkinleştirilir.
 
 > \# apt-get install aide   
 > \# aideinit   
@@ -403,15 +403,15 @@ ________________________________________________________________________________
 
 #### 10.1 /etc/passwd'a erişimin ayarlanması
 
-      Parolaların erişimin engellenmesi dışarıdan gelebilecek tehditleri azaltmaktadır. Aşağıdaki bash
+      Parolaların erişimin engellenmesi dışarıdan gelebilecek tehditleri azaltmaktadır. Aşağıdaki komut
       uygulanarak erişim izni ayarlanır.
 
 > /bin/chmod 644 /etc/passwd
 
-#### 10.2 /etc/shado'a erişimin ayarlanması
+#### 10.2 /etc/shadow'a erişimin ayarlanması
 
       Kullanıcılarla ilgili verilerin tutulduğu dosyaya erişimin engellenmesi öenmli bir sıkılaştırmadır.
-      Aşağıdaki bash çalıştırılarak erişim izni ayarlanır.
+      Aşağıdaki komut çalıştırılarak erişim izni ayarlanır.
 
 > /bin/chmod o-rwx,g-rw /etc/shadow
 
